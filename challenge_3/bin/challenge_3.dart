@@ -57,10 +57,12 @@ void main(List<String> arguments) {
   while(true) {
     int counter = 0;
 
+    print("'w' está para 'x':");
     strValues.add(processValue('w'));
-    strValues.add(processValue('z'));
-    strValues.add(processValue('y'));
     strValues.add(processValue('x'));
+    print("\n'y' está para 'z':");
+    strValues.add(processValue('y'));
+    strValues.add(processValue('z'));
 
     for (var value in strValues) {
       if(value == "") {
@@ -71,13 +73,13 @@ void main(List<String> arguments) {
             unknownValueName = 'w';
             break;
           case 1:
-            unknownValueName = 'z';
+            unknownValueName = 'x';
             break;
           case 2:
             unknownValueName = 'y';
             break;
           case 3:
-            unknownValueName = 'x';
+            unknownValueName = 'z';
             break;
         }
       };
@@ -95,31 +97,43 @@ void main(List<String> arguments) {
   }
 
   w = convertValue(strValues[0]);
-  z = convertValue(strValues[1]);
+  x = convertValue(strValues[1]);
   y = convertValue(strValues[2]);
-  x = convertValue(strValues[3]);
+  z = convertValue(strValues[3]);
 
   strValues[emptyValueIndex] = unknownValueName;
-  equation = strValues[0] + " * " + strValues[1] + " = " + strValues[2] + " * " + strValues[3];
+  equation = "${strValues[0]} * ${strValues[3]} = ${strValues[2]} * ${strValues[1]}";
 
   print("\nA equação ficou:\n"
+        " ${strValues[0]} está para ${strValues[1]}\n"
+        "  assim como\n"
+        " ${strValues[2]} está para ${strValues[3]}\n\n"
+        "ou seja,\n"
         " $equation");
 
-  switch(emptyValueIndex) {
-    case 0:
-      result = (x * y) / z;
-      break;
-    case 1:
-      result = (x * y) / w;
-      break;
-    case 2:
-      result = (w * z) / x;
-      break;
-    case 3:
-      result = (w * z) / y;
-      break;
+  double multiplication;
+  double temp;
+  if(emptyValueIndex == 0 || emptyValueIndex == 3) {
+    multiplication = y * x;
+    if(emptyValueIndex == 0) {
+      temp = z;
+    } else {
+      temp = w;
+    }
+  } else {
+    multiplication = w * z;
+    if(emptyValueIndex == 1) {
+      temp = y;
+    } else {
+      temp = x;
+    }
   }
+  equation = " ${temp.toStringAsFixed(2)}$unknownValueName = ${multiplication.toStringAsFixed(2)}";
+  print(equation);
+  equation = " $unknownValueName = ${multiplication.toStringAsFixed(2)} / $temp";
+  print(equation);
+  result = multiplication / temp;
 
-  print("Portanto:\n"
+  print("\nPortanto:\n"
         " $unknownValueName = ${result.toStringAsFixed(2)} \n\n");
 }
