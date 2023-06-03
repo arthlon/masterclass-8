@@ -45,10 +45,10 @@ double convertValue(String value) {
 }
 
 void main(List<String> arguments) {
-  List<String> values = [];
+  List<String> strValues = [];
   double w, x, y, z;
   late int emptyValueIndex;
-  String unknown = "";
+  String unknownValueName = "";
   String equation = "";
   late double result;
 
@@ -57,27 +57,27 @@ void main(List<String> arguments) {
   while(true) {
     int counter = 0;
 
-    values.add(processValue('w'));
-    values.add(processValue('z'));
-    values.add(processValue('y'));
-    values.add(processValue('x'));
+    strValues.add(processValue('w'));
+    strValues.add(processValue('z'));
+    strValues.add(processValue('y'));
+    strValues.add(processValue('x'));
 
-    for (var value in values) {
+    for (var value in strValues) {
       if(value == "") {
         counter++;
-        emptyValueIndex = values.indexOf(value);
+        emptyValueIndex = strValues.indexOf(value);
         switch(emptyValueIndex) {
           case 0:
-            unknown = 'w';
+            unknownValueName = 'w';
             break;
           case 1:
-            unknown = 'z';
+            unknownValueName = 'z';
             break;
           case 2:
-            unknown = 'y';
+            unknownValueName = 'y';
             break;
           case 3:
-            unknown = 'x';
+            unknownValueName = 'x';
             break;
         }
       };
@@ -85,22 +85,22 @@ void main(List<String> arguments) {
 
     if(counter > 1) {
       print("Você deixou mais de um elemento vazio:");
-      print(" w = ${values[0] == "" ? "?" : values[0]}\n"
-            " z = ${values[1] == "" ? "?" : values[1]}\n"
-            " y = ${values[2] == "" ? "?" : values[2]}\n"
-            " x = ${values[3] == "" ? "?" : values[3]}\n");
-      values = [];
+      print(" w = ${strValues[0] == "" ? "?" : strValues[0]}\n"
+            " z = ${strValues[1] == "" ? "?" : strValues[1]}\n"
+            " y = ${strValues[2] == "" ? "?" : strValues[2]}\n"
+            " x = ${strValues[3] == "" ? "?" : strValues[3]}\n");
+      strValues = [];
       counter = 0;
     } else break;
   }
 
-  w = convertValue(values[0]);
-  z = convertValue(values[1]);
-  y = convertValue(values[2]);
-  x = convertValue(values[3]);
+  w = convertValue(strValues[0]);
+  z = convertValue(strValues[1]);
+  y = convertValue(strValues[2]);
+  x = convertValue(strValues[3]);
 
-  values[emptyValueIndex] = unknown;
-  equation = values[0] + " * " + values[1] + " = " + values[2] + " * " + values[3];
+  strValues[emptyValueIndex] = unknownValueName;
+  equation = strValues[0] + " * " + strValues[1] + " = " + strValues[2] + " * " + strValues[3];
 
   print("\nA equação ficou:\n"
         " $equation");
@@ -121,5 +121,5 @@ void main(List<String> arguments) {
   }
 
   print("Portanto:\n"
-        " $unknown = ${result.toStringAsFixed(2)} \n\n");
+        " $unknownValueName = ${result.toStringAsFixed(2)} \n\n");
 }
