@@ -34,13 +34,13 @@ void main(List<String> arguments) {
     case < 18.5:
       classification = "'Abaixo do Peso'";
       break;
-    case < 24.9:
+    case <= 24.9:
       classification = "com 'Peso Normal'";
       break;
-    case < 29.9:
+    case <= 29.9:
       classification = "com 'Sobrepeso'";
       break;
-    case > 30:
+    case >= 30:
       classification = "com 'Obesidade'";
       break;
     default:
