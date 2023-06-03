@@ -15,7 +15,8 @@ void main(List<String> arguments) {
   List<int> listNumbers = listFibonacci(position, List.filled(position, 0));
   int fibonacci = listNumbers[position - 1];
 
-  print(listNumbers);
+  print("Sequência de $position números Fibonacci:\n"
+        " $listNumbers");
 
   print("\n O número Fibonacci na posição $position é: $fibonacci");
 }
