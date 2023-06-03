@@ -19,7 +19,7 @@ bool confirmValue(String value) {
   }
 
   for (var char in value.codeUnits) {
-    if(char < 48 || char > 57) {
+    if(char < 48 && char != 46 || char > 57) {
       print("Você inseriu algum caractere não número!");
       return false;
     }
