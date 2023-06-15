@@ -89,7 +89,7 @@ void generateCPF() {
 
   List<String> validCPFList = [];
   for(int i = 0; i < amount; i++) {
-    validCPFList.add(CPF(number: '').generateValidCPF());
+    validCPFList.add(CPF.empty().generateValidCPF());
   }
 
   for (var cpfNumber in validCPFList) {

@@ -4,6 +4,7 @@ class CPF {
   late String number;
 
   CPF({required this.number});
+  CPF.empty();
 
   bool validate() {
     int firstCheckDigit = calculateDigit(8, this.number);
